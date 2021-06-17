@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemple </title>
+    <style>
+        .Avatar{
+            width: 200px;
+            height: 150px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="racine"></div>
+
+
+
+
+
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"
+        integrity="sha512-kp7YHLxuJDJcOzStgd6vtpxr4ZU9kjn77e6dBsivSz+pUuAuMlE2UTdKB7jjsWT84qbS8kdCWHPETnP/ctrFsA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/babel">
+        function formatDate(date) {
+            return date.toLocaleDateString();
+        }
+        function Avatar(props) {
+            return (
+                <img
+                    className="Avatar"
+                    src={props.user.avatarUrl}
+                    alt={props.user.name}
+                />
+            );
+        }
+
+        function UserInfo(props) {
+            return (
+                <div className="UserInfo">
+                    <Avatar user={props.user} />
+                    <div className="UserInfo-name">{props.user.name}</div>
+                </div>
+            );
+        }
+
+        function Comment(props) {
+            return (
+                <div className="Comment">
+                    <UserInfo user={props.author} />
+                    <div className="Comment-text">{props.text}</div>
+                    <div className="Comment-date">
+                        {formatDate(props.date)}
+                    </div>
+                </div>
+            );
+        }
+
+        const comment = {
+            date: new Date(),
+            text: "J'espère apprendre le maximum en  React Js!",
+            author: {
+                name: 'Hello SEDATI',
+                avatarUrl: 'image1.jpg'
+            },
+        };
+        ReactDOM.render(
+            <Comment date={comment.date} text={comment.text} author={comment.author}/>,
+            document.getElementById('racine')
+        );
+
+
+    </script>
+</body>
+
+</html>
