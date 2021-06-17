@@ -1,0 +1,19 @@
+<!DOCTYPE html><html><head></head>
+<body>
+
+<div id="aff-txt"></div>
+
+<script src='https://unpkg.com/react/umd/react.development.js'></script>
+<script src='https://unpkg.com/react-dom/umd/react-dom.development.js'></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+<script type="text/babel">
+
+    const titre = "<p>React Js</p>";
+    // Ceci est sans risque :
+    const element = <h1>{titre}</h1>;
+    const container = document.getElementById("aff-txt");
+    ReactDOM.render(element, container);
+  </script>
+
+</body></html>

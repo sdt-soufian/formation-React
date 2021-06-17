@@ -1,0 +1,38 @@
+<!DOCTYPE html><html><head></head>
+<body>
+
+<div id="aff-user"></div>
+
+<script src='https://unpkg.com/react/umd/react.development.js'></script>
+<script src='https://unpkg.com/react-dom/umd/react-dom.development.js'></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+<script type="text/babel">
+  
+  // Création de l'objet user 
+  const user = {
+     firstname : "SEDATI",
+     lastename : "Soufian"
+  }
+
+  function formatName(utilisateur){
+    
+    return utilisateur.firstname + " " + utilisateur.lastename;
+  }
+
+  function getUser(user) {
+    if (user) {
+      return <h1>Bonjour, {formatName(user)} !</h1>;
+    }
+    return <h1>Bonjour, Belle Inconnue.</h1>;
+  }
+
+  const element = getUser(user)
+  const container = document.querySelector("#aff-user");
+  
+  ReactDOM.render(element, container);
+
+
+</script>
+
+</body></html>

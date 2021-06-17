@@ -20,9 +20,11 @@
             nom: 'SEDATI',
             prenom: 'Soufian'
         }
-        const names = (utilisateur) =>{
-            return `Votre Nom  : ${utilisateur.nom} Prenom : ${utilisateur.prenom}`
-        }
+        const names = utilisateur => `Votre Nom  : ${utilisateur.nom} Prenom : ${utilisateur.prenom}`
+        
+        /*function names(utilisateur){
+            return  `Votre Nom  : ${utilisateur.nom} Prenom : ${utilisateur.prenom}`
+        }*/
         const elet = <h1>Bonjour {names(user)} </h1>
         const conteneur = document.getElementById('root');
         ReactDOM.render(
