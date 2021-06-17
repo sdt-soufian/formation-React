@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exemple </title>
     <style>
-        .Avatar{
+        .Avatar {
             width: 200px;
             height: 150px;
         }
@@ -27,6 +27,17 @@
         integrity="sha512-kp7YHLxuJDJcOzStgd6vtpxr4ZU9kjn77e6dBsivSz+pUuAuMlE2UTdKB7jjsWT84qbS8kdCWHPETnP/ctrFsA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script type="text/babel">
+
+        const comment = {
+            date: new Date(),
+            text: "J'espère apprendre le maximum en  React Js!",
+            author: {
+                name: 'Hello SEDATI',
+                avatarUrl: 'image1.jpg'
+            },
+        };
+
+
         function formatDate(date) {
             return date.toLocaleDateString();
         }
@@ -61,16 +72,8 @@
             );
         }
 
-        const comment = {
-            date: new Date(),
-            text: "J'espère apprendre le maximum en  React Js!",
-            author: {
-                name: 'Hello SEDATI',
-                avatarUrl: 'image1.jpg'
-            },
-        };
         ReactDOM.render(
-            <Comment date={comment.date} text={comment.text} author={comment.author}/>,
+            <Comment date={comment.date} text={comment.text} author={comment.author} />,
             document.getElementById('racine')
         );
 

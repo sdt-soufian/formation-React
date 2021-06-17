@@ -49,7 +49,7 @@
                 return <li>{this.name} </li>
             }
         }
-        class Tasks extends React.Component {
+        class TaskList extends React.Component {
             constructor(props) {
                 super(props);
                  this.tasksArrayMap = props.taches.map((task, indice) => {
@@ -72,7 +72,7 @@
             return <div>
                 <Title />
                 <AddForm />
-                <Tasks taches={props.taches} />
+                <TaskList taches={props.taches} />
             </div>
         }
         var tasksArray = [

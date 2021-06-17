@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <title>Creer un Composant React Js avec une fonction</title>
+    <style>
+        body{
+            font-family: 'Poppins', sans-serif;
+        }
+        .img-show {
+            width: 300px;
+            height: 250px;
+        }
+
+        .img-show img {
+            width: 100%;
+            height: 100%;
+            border-radius: 5px;
+            box-shadow: 0px 12px 18px gray;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+
+
+
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"
+        integrity="sha512-kp7YHLxuJDJcOzStgd6vtpxr4ZU9kjn77e6dBsivSz+pUuAuMlE2UTdKB7jjsWT84qbS8kdCWHPETnP/ctrFsA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/babel">
+        let userInfo = {
+            info: {
+                nom: 'SEDATI',
+                prenom: 'Soufian',
+                email: 'proCount@gmail.com'
+            },
+            competence: [
+                { module: 'Javascript', niveau: 'A2' },
+                { module: 'PHP', niveau: 'B1' },
+                { module: 'Python', niveau: 'B2' },
+                { module: 'Langage C', niveau: 'B2' }
+            ],
+            avatar: {
+                url: 'images/image1.jpg',
+                alt: 'robot'
+            }
+        }
+        function Avatar(props) {
+            return (
+                <div className="img-show">
+                    <img src={props.image.url} alt={props.image.alt} />
+                </div>
+            )
+        }
+        function UserId(props) {
+            return (
+                <div>
+                    <ul>
+                        <li>{props.userInf.nom}</li>
+                        <li>{props.userInf.prenom} </li>
+                        <li>{props.userInf.email}</li>
+                    </ul>
+                </div>
+            )
+        }
+        function Skills(props) {
+            var module = props.table.map((elet, indice) => {
+                return <li key={indice}>{elet.module} niveau {elet.niveau} </li>
+            })
+            return (
+                <div>
+                    <ul>
+                        {module}
+                    </ul>
+                </div>
+            )
+        }
+        function App(props) {
+            return (
+                <div>
+                    <h1>User Count</h1>
+                    <Avatar image={props.image} />
+                    <h1>Information Générale</h1>
+                    <UserId userInf={props.userInf} />
+                    <h1>Competences</h1>
+                    <Skills table={props.table} />
+                </div>
+            )
+        }
+        ReactDOM.render(
+            <App image={userInfo.avatar} userInf={userInfo.info} table={userInfo.competence} />,
+            document.getElementById('root')
+        );
+    </script>
+</body>
+
+</html>
