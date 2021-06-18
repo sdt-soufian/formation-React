@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasks App</title>
+</head>
+
+<body>
+    <div id="root"></div>
+
+
+
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"
+        integrity="sha512-kp7YHLxuJDJcOzStgd6vtpxr4ZU9kjn77e6dBsivSz+pUuAuMlE2UTdKB7jjsWT84qbS8kdCWHPETnP/ctrFsA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/babel">
+        let tachesListe = {
+            titre: 'Liste du Taches',
+            tachesTab: [
+                { name: "tache 1", value: 1 },
+                { name: "tache 2", value: 1 },
+                { name: "tache 3", value: 0 },
+            ]
+        }
+        console.log(tachesListe.tachesTab[1].name);
+        function Title(props){
+            return <h1>{props.leTitre}</h1>
+        }
+        function AddForm(props){
+            return (
+                <div>
+                    <form>
+                        <input type="text" placeholder="Write your task here"/>
+                        <button>Add</button>
+                    </form>
+                </div>
+            )
+        }
+        function Task(props){
+            return <li>{props.name}</li>
+        }
+        function TasksList(props){
+            var tabList = props.table.map((elet, indice)=>{
+                return <Task key={indice} name={elet.name}/>
+            })
+            return <ul>{tabList}</ul>
+        }
+        function App(props){
+            return (
+                <div>
+                    <Title leTitre={props.leTitre}/>
+                    <AddForm/>
+                    <TasksList table={props.table}/>
+                </div>
+            )
+        }
+        ReactDOM.render(
+            <App leTitre={tachesListe.titre} table={tachesListe.tachesTab}/>,
+            document.getElementById('root')
+        )
+    </script>
+</body>
+
+</html>
