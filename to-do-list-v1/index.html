@@ -60,7 +60,7 @@
                 this.tasksArrayMap = this.props.taches.map((task, indice) => {
                     return (
                         <Task
-                            key={indice}
+                            key={task.id}
                             name={task.name}
                         />
                     )
@@ -73,7 +73,7 @@
         class App extends React.Component {
             constructor(props) {
                 super(props);
-                this.state = { taches: [{ name: 'tache 1', done: true }] };
+                this.state = { taches: [{ id: 1, name: 'tache 22', done: true }] };
             }
             componentDidMount() {
                 $.getJSON("http://127.0.0.1:5500/to-do-list-v1/data.json", function (data) {
