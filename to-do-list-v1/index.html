@@ -54,7 +54,10 @@
         class TaskList extends React.Component {
             constructor(props) {
                 super(props);
-                this.tasksArrayMap = props.taches.map((task, indice) => {
+                
+            }
+            render() {
+                this.tasksArrayMap = this.props.taches.map((task, indice) => {
                     return (
                         <Task
                             key={indice}
@@ -62,9 +65,6 @@
                         />
                     )
                 });
-            }
-            render() {
-
                 return <ul>
                     {this.tasksArrayMap}
                 </ul>
@@ -77,10 +77,12 @@
             }
             componentDidMount() {
                 $.getJSON("http://127.0.0.1:5500/to-do-list-v1/data.json", function (data) {
-                    console.log(data)
-                })
-                    .fail(function (message) {
-                        console.log(message.responseText); 
+                    console.log(data) 
+                    this.setState({ taches: data});
+                }.bind(this))
+                    .fail(function (jqXHR, textStatus, errorThrown) {
+
+                        console.log(errorThrown);
                     })
             }
             render() {
