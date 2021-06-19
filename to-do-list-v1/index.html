@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="root"></div>
+
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"
+        integrity="sha512-kp7YHLxuJDJcOzStgd6vtpxr4ZU9kjn77e6dBsivSz+pUuAuMlE2UTdKB7jjsWT84qbS8kdCWHPETnP/ctrFsA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script type="text/babel">
+        class Title extends React.Component {
+            constructor(props) {
+                super(props);
+            }
+            render() {
+                return <h1>Gestion des Taches</h1>
+            }
+        }
+
+        class AddForm extends React.Component {
+            constructor(props) {
+                super(props);
+            }
+            render() {
+                return <div>
+                    <form>
+                        <input type="text" name="" id="" />
+                        <button>add</button>
+                    </form>
+                </div>
+            }
+        }
+        class Task extends React.Component {
+            constructor(props) {
+                super(props);
+                this.name = props.name
+            }
+            render() {
+                return <li>{this.name} </li>
+            }
+        }
+        class TaskList extends React.Component {
+            constructor(props) {
+                super(props);
+                this.tasksArrayMap = props.taches.map((task, indice) => {
+                    return (
+                        <Task
+                            key={indice}
+                            name={task.name}
+                        />
+                    )
+                });
+            }
+            render() {
+
+                return <ul>
+                    {this.tasksArrayMap}
+                </ul>
+            }
+        }
+        class App extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = { taches: [{ name: 'tache 1', done: true }] };
+            }
+            componentDidMount() {
+                $.getJSON("http://127.0.0.1:5500/to-do-list-v1/data.json", function (data) {
+                    console.log(data)
+                })
+                    .fail(function (message) {
+                        console.log(message.responseText); 
+                    })
+            }
+            render() {
+                return <div>
+                    <Title />
+                    <AddForm />
+                    <TaskList taches={this.state.taches} />
+                </div>
+            }
+
+        }
+        ReactDOM.render(
+            <App />,
+            document.getElementById('root')
+        );
+
+    </script>
+</body>
+
+</html>
